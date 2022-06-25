@@ -1,0 +1,144 @@
+.jobs-container {
+  background-color: black;
+  min-height: 100vh;
+}
+.jobs-content-container {
+  padding: 15px;
+}
+.search-icon {
+  color: #64748b;
+  width: 15px;
+  height: 15px;
+}
+.search-input {
+  background-color: transparent;
+  border: none;
+  height: 95%;
+  outline: none;
+  color: #64748b;
+  flex-grow: 1;
+}
+.search-input-container {
+  border: 1px solid #64748b;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 5px;
+}
+.profile-container {
+  min-height: 30vh;
+  padding-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #f8fafc;
+}
+.profile-success-card {
+  background-image: url('https://assets.ccbp.in/frontend/react-js/profile-bg.png');
+  background-size: cover;
+  padding: 20px;
+  width: 100%;
+  height: 22vh;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.profile-name {
+  color: #6366f1;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.profile-img {
+  width: 40px;
+  height: 40px;
+}
+.bio {
+  font-size: 12px;
+}
+.retry-btn {
+  background-color: #4f46e5;
+  border: none;
+  color: #f8fafc;
+  width: 70px;
+  height: 26px;
+  border-radius: 6px;
+  font-size: 10px;
+  cursor: pointer;
+  outline: none;
+}
+.employment-type-list-container {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #f8fafc;
+  padding-bottom: 5px;
+}
+.salary-range-list-container {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 5px;
+}
+.list-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 7px;
+}
+.employment-type-heading {
+  color: #f8fafc;
+  font-size: 13px;
+  margin-top: 15px;
+}
+.employment-type-label {
+  color: #f8fafc;
+  font-size: 12px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+.checkbox {
+  cursor: pointer;
+}
+.jobs-list-container {
+  padding: 0;
+  list-style: none;
+}
+.job-title {
+  color: #f8fafc;
+  font-size: 11px;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+.job-item {
+  background-color: #272727;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.company-logo {
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+}
+.job-image-container {
+  display: flex;
+  align-items: center;
+}
+.star-icon {
+  color: #fbbf24;
+}
+.rating-container {
+  display: flex;
+  align-items: center;
+}
+.rating {
+  color: #f8fafc;
+  margin: 0;
+  font-size: 11px;
+  margin-left: 5px;
+}
