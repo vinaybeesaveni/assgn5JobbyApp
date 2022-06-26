@@ -1,8 +1,10 @@
 import {Component} from 'react'
+import {Link} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 import {AiFillStar} from 'react-icons/ai'
-import {BsSearch} from 'react-icons/bs'
+import {BsSearch, BsFillBriefcaseFill} from 'react-icons/bs'
+import {MdLocationOn} from 'react-icons/md'
 import Header from '../Header'
 
 import './index.css'
@@ -59,7 +61,7 @@ class Jobs extends Component {
     employmentTypeArray: [],
     salaryRange: '',
     searchInput: '',
-    jobDeatils: [],
+    jobDetails: [],
     apiStatusForJobs: apiStatusConstants.initial,
   }
 
@@ -102,6 +104,7 @@ class Jobs extends Component {
     const employmentArray = employmentTypeArray.join()
     const jwtToken = Cookies.get('jwt_token')
     const url = `https://apis.ccbp.in/jobs?employment_type=${employmentArray}&minimum_package=${salaryRange}&search=${searchInput}`
+    // console.log(url)
     const options = {
       method: 'GET',
       headers: {
@@ -126,6 +129,8 @@ class Jobs extends Component {
         apiStatusForJobs: apiStatusConstants.success,
         jobDetails: updatedData,
       })
+    } else {
+      this.setState({apiStatusForJobs: apiStatusConstants.failure})
     }
   }
 
@@ -174,34 +179,85 @@ class Jobs extends Component {
     }
   }
 
+  renderNoJobsView = () => (
+    <div className="job-failure-container">
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png"
+        alt="no jobs"
+        className="job-details-failure-img"
+      />
+      <h1 className="job-failure-heading">No Jobs Found</h1>
+      <p className="failure-description">
+        We could not find any jobs. Try other filters.
+      </p>
+    </div>
+  )
+
   renderJobsSuccessView = () => {
     const {jobDetails} = this.state
+    if (jobDetails.length === 0) {
+      return this.renderNoJobsView()
+    }
     return (
       <ul className="jobs-list-container">
         {jobDetails.map(each => (
           <li className="job-item" key={each.id}>
-            <div className="job-image-container">
-              <img
-                src={each.companyLogoUrl}
-                alt="name"
-                className="company-logo"
-              />
-              <div>
-                <p className="job-title">{each.title}</p>
-                <div className="rating-container">
-                  <AiFillStar className="star-icon" />
-                  <p className="rating">{each.rating}</p>
+            <Link to={`/jobs/${each.id}`} className="job-item-link">
+              <div className="job-image-container">
+                <img
+                  src={each.companyLogoUrl}
+                  alt="company logo"
+                  className="company-logo"
+                />
+                <div>
+                  <p className="job-title">{each.title}</p>
+                  <div className="rating-container">
+                    <AiFillStar className="star-icon" />
+                    <p className="rating">{each.rating}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+              <div className="salary-container">
+                <div className="location-employment-type-container">
+                  <div className="location-container">
+                    <MdLocationOn className="location-icon" />
+                    <p className="location">{each.location}</p>
+                  </div>
+                  <div className="location-container">
+                    <BsFillBriefcaseFill className="location-icon" />
+                    <p className="location">{each.employmentType}</p>
+                  </div>
+                </div>
+                <p className="package-per-annum">{each.packagePerAnnum}</p>
+              </div>
+              <p className="description-heading">Description</p>
+              <p className="job-description">{each.jobDescription}</p>
+            </Link>
           </li>
         ))}
       </ul>
     )
   }
 
+  renderJobsFailureView = () => (
+    <div className="job-failure-container">
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
+        alt="failure"
+        className="job-details-failure-img"
+      />
+      <h1 className="job-failure-heading">Oops! Something Went Wrong</h1>
+      <p className="failure-description">
+        We cannot seem to find the page you are looking for.
+      </p>
+      <button type="button" className="retry-btn" onClick={this.getJobs}>
+        Retry
+      </button>
+    </div>
+  )
+
   renderJobDetails = () => {
-    const {jobDetails, apiStatusForJobs} = this.state
+    const {apiStatusForJobs} = this.state
     switch (apiStatusForJobs) {
       case apiStatusConstants.loading:
         return this.loadingView()
@@ -214,7 +270,35 @@ class Jobs extends Component {
     }
   }
 
+  onSalaryChange = event => {
+    const salary = event.target.value
+    const salary2 = salary.split(' ')
+    const salary3 = JSON.stringify(parseInt(salary2[0]) * 100000)
+    console.log(salary3)
+    this.setState({salaryRange: salary3}, this.getJobs)
+  }
+
+  onEmploymentTypeChange = event => {
+    const {employmentTypeArray} = this.state
+    if (event.target.checked) {
+      employmentTypeArray.push(event.target.value)
+    } else {
+      employmentTypeArray.pop(event.target.value)
+    }
+    console.log(employmentTypeArray)
+    this.setState({employmentTypeArray}, this.getJobs)
+  }
+
+  onSearchInputChange = event => {
+    this.setState({searchInput: event.target.value})
+  }
+
+  onClickingSearchIcon = () => {
+    this.getJobs()
+  }
+
   render() {
+    const {searchInput} = this.state
     return (
       <div className="jobs-container">
         <Header />
@@ -224,8 +308,13 @@ class Jobs extends Component {
               type="search"
               placeholder="Search"
               className="search-input"
+              onChange={this.onSearchInputChange}
+              value={searchInput}
             />
-            <BsSearch className="search-icon" />
+            <BsSearch
+              className="search-icon"
+              onClick={this.onClickingSearchIcon}
+            />
           </div>
           <div className="profile-container">{this.renderProfileDetails()}</div>
           <div>
@@ -237,6 +326,8 @@ class Jobs extends Component {
                     type="checkbox"
                     id={each.employmentTypeId}
                     className="checkbox"
+                    onChange={this.onEmploymentTypeChange}
+                    value={each.employmentTypeId}
                   />
                   <label
                     htmlFor={each.employmentTypeId}
@@ -257,6 +348,8 @@ class Jobs extends Component {
                     type="radio"
                     id={each.salaryRangeId}
                     className="checkbox"
+                    onChange={this.onSalaryChange}
+                    value={each.label}
                     name="radio"
                   />
                   <label
@@ -269,7 +362,7 @@ class Jobs extends Component {
               ))}
             </ul>
           </div>
-          <div>{this.renderJobDetails()}</div>
+          <div className="job-details-container">{this.renderJobDetails()}</div>
         </div>
       </div>
     )

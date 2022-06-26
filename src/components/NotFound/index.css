@@ -1,0 +1,28 @@
+.not-found-container {
+  background-color: black;
+  height: 100vh;
+}
+.not-found-content-container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+.not-found-image {
+  width: 100%;
+}
+.not-found-heading {
+  color: #f8fafc;
+  font-size: 17px;
+  font-weight: 500;
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+.not-found-description {
+  color: #f8fafc;
+  font-size: 12px;
+  text-align: center;
+  max-width: 220px;
+}
