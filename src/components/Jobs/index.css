@@ -5,6 +5,21 @@
 .jobs-content-container {
   padding: 15px;
 }
+@media screen and (min-width: 768px) {
+  .jobs-content-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .job-filters-container {
+    width: 20%;
+    margin-right: 5%;
+    margin-top: 0;
+  }
+}
+
 .search-icon {
   color: #64748b;
   width: 15px;
@@ -29,6 +44,29 @@
   padding-left: 10px;
   border-radius: 5px;
 }
+.search-input-container-medium {
+  border: 1px solid #64748b;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 5px;
+  align-self: flex-start;
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .search-input-container {
+    display: none;
+  }
+}
+@media screen and (min-width: 768px) {
+  .search-input-container-medium {
+    display: flex;
+    width: 50%;
+  }
+}
 .profile-container {
   min-height: 30vh;
   padding-top: 15px;
@@ -36,6 +74,13 @@
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid #f8fafc;
+}
+@media screen and (min-width: 768px) {
+  .profile-container {
+    padding-top: 0;
+    min-height: 22vh;
+    padding-bottom: 15px;
+  }
 }
 .profile-success-card {
   background-image: url('https://assets.ccbp.in/frontend/react-js/profile-bg.png');
@@ -83,6 +128,13 @@
   display: flex;
   justify-content: center;
 }
+@media screen and (min-width: 768px) {
+  .job-details-container {
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 50%;
+  }
+}
 .salary-range-list-container {
   padding: 0;
   list-style: none;
@@ -114,6 +166,12 @@
   list-style: none;
   margin-top: 0;
 }
+@media screen and (min-width: 768px) {
+  .jobs-list-container {
+    width: 70%;
+    margin-top: 20px;
+  }
+}
 .job-title {
   color: #f8fafc;
   font-size: 12px;
@@ -125,6 +183,11 @@
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 10px;
+}
+@media screen and (min-width: 768px) {
+  .job-item {
+    height: 250px;
+  }
 }
 .job-item-link {
   text-decoration: none;
@@ -212,4 +275,9 @@
   text-align: center;
   font-size: 13px;
   line-height: 2em;
+}
+.search-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }

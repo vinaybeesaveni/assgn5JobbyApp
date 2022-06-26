@@ -95,7 +95,7 @@ class JobItem extends Component {
     return (
       <ul className="similar-jobs-container">
         {similarJobs.map(each => (
-          <li className="job-item-similar-jobs">
+          <li className="job-item-similar-jobs" key={each.id}>
             <div className="job-image-container">
               <img
                 src={each.companyLogoUrl}
@@ -103,16 +103,16 @@ class JobItem extends Component {
                 className="company-logo-jobItem"
               />
               <div>
-                <p className="job-title-jobItem">{each.title}</p>
+                <h1 className="job-title-jobItem">{each.title}</h1>
                 <div className="rating-container">
                   <AiFillStar className="star-icon-jobItem" />
                   <p className="rating-jobItem">{each.rating}</p>
                 </div>
               </div>
             </div>
-            <p className="description-heading-jobItem-similar-jobs">
+            <h1 className="description-heading-jobItem-similar-jobs">
               Description
-            </p>
+            </h1>
             <p className="job-description-jobItem-similar-jobs">
               {each.jobDescription}
             </p>
@@ -147,7 +147,7 @@ class JobItem extends Component {
               className="company-logo-jobItem"
             />
             <div>
-              <p className="job-title-jobItem">{jobItemDetails.title}</p>
+              <h1 className="job-title-jobItem">{jobItemDetails.title}</h1>
               <div className="rating-container">
                 <AiFillStar className="star-icon-jobItem" />
                 <p className="rating-jobItem">{jobItemDetails.rating}</p>
@@ -172,7 +172,7 @@ class JobItem extends Component {
             </p>
           </div>
           <div className="description-link-container">
-            <p className="description-heading-jobItem">Description</p>
+            <h1 className="description-heading-jobItem">Description</h1>
             <a
               href={jobItemDetails.companyWebsiteUrl}
               className="company-website-link"
@@ -183,11 +183,11 @@ class JobItem extends Component {
           <p className="job-description-jobItem">
             {jobItemDetails.jobDescription}
           </p>
-          <p className="skills-heading">Skills</p>
+          <h1 className="skills-heading">Skills</h1>
           <ul className="skills-container">
             {jobItemDetails.skills.map(each => this.renderSkills(each))}
           </ul>
-          <p className="life-at-company-heading">Life at Company</p>
+          <h1 className="life-at-company-heading">Life at Company</h1>
           <p className="life-at-company-description">
             {jobItemDetails.lifeAtCompany.description}
           </p>
@@ -207,7 +207,7 @@ class JobItem extends Component {
     <div className="job-failure-container-similar-jobs">
       <img
         src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
-        alt="failure"
+        alt="failure view"
         className="job-details-failure-img"
       />
       <h1 className="job-failure-heading">Oops! Something Went Wrong</h1>

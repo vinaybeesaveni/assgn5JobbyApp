@@ -143,7 +143,7 @@ class Jobs extends Component {
           alt="profile"
           className="profile-img"
         />
-        <p className="profile-name">{profileData.name}</p>
+        <h1 className="profile-name">{profileData.name}</h1>
         <p className="bio">{profileData.shortBio}</p>
       </div>
     )
@@ -210,7 +210,7 @@ class Jobs extends Component {
                   className="company-logo"
                 />
                 <div>
-                  <p className="job-title">{each.title}</p>
+                  <h1 className="job-title">{each.title}</h1>
                   <div className="rating-container">
                     <AiFillStar className="star-icon" />
                     <p className="rating">{each.rating}</p>
@@ -230,7 +230,7 @@ class Jobs extends Component {
                 </div>
                 <p className="package-per-annum">{each.packagePerAnnum}</p>
               </div>
-              <p className="description-heading">Description</p>
+              <h1 className="description-heading">Description</h1>
               <p className="job-description">{each.jobDescription}</p>
             </Link>
           </li>
@@ -243,7 +243,7 @@ class Jobs extends Component {
     <div className="job-failure-container">
       <img
         src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
-        alt="failure"
+        alt="failure view"
         className="job-details-failure-img"
       />
       <h1 className="job-failure-heading">Oops! Something Went Wrong</h1>
@@ -303,66 +303,93 @@ class Jobs extends Component {
       <div className="jobs-container">
         <Header />
         <div className="jobs-content-container">
-          <div className="search-input-container">
-            <input
-              type="search"
-              placeholder="Search"
-              className="search-input"
-              onChange={this.onSearchInputChange}
-              value={searchInput}
-            />
-            <BsSearch
-              className="search-icon"
-              onClick={this.onClickingSearchIcon}
-            />
+          <div className="job-filters-container">
+            <div className="search-input-container">
+              <input
+                type="search"
+                placeholder="Search"
+                className="search-input"
+                onChange={this.onSearchInputChange}
+                value={searchInput}
+              />
+              <button
+                type="button"
+                className="search-btn"
+                onClick={this.onClickingSearchIcon}
+                testid="searchButton"
+              >
+                <BsSearch className="search-icon" />
+              </button>
+            </div>
+            <div className="profile-container">
+              {this.renderProfileDetails()}
+            </div>
+            <div>
+              <h1 className="employment-type-heading">Type of Employment</h1>
+              <ul className="employment-type-list-container">
+                {employmentTypesList.map(each => (
+                  <li className="list-item" key={each.employmentTypeId}>
+                    <input
+                      type="checkbox"
+                      id={each.employmentTypeId}
+                      className="checkbox"
+                      onChange={this.onEmploymentTypeChange}
+                      value={each.employmentTypeId}
+                    />
+                    <label
+                      htmlFor={each.employmentTypeId}
+                      className="employment-type-label"
+                    >
+                      {each.label}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h1 className="employment-type-heading">Salary Range</h1>
+              <ul className="salary-range-list-container">
+                {salaryRangesList.map(each => (
+                  <li className="list-item" key={each.salaryRangeId}>
+                    <input
+                      type="radio"
+                      id={each.salaryRangeId}
+                      className="checkbox"
+                      onChange={this.onSalaryChange}
+                      value={each.label}
+                      name="radio"
+                    />
+                    <label
+                      htmlFor={each.salaryRangeId}
+                      className="employment-type-label"
+                    >
+                      {each.label}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className="profile-container">{this.renderProfileDetails()}</div>
-          <div>
-            <p className="employment-type-heading">Type of Employment</p>
-            <ul className="employment-type-list-container">
-              {employmentTypesList.map(each => (
-                <li className="list-item" key={each.employmentTypeId}>
-                  <input
-                    type="checkbox"
-                    id={each.employmentTypeId}
-                    className="checkbox"
-                    onChange={this.onEmploymentTypeChange}
-                    value={each.employmentTypeId}
-                  />
-                  <label
-                    htmlFor={each.employmentTypeId}
-                    className="employment-type-label"
-                  >
-                    {each.label}
-                  </label>
-                </li>
-              ))}
-            </ul>
+          <div className="job-details-container">
+            <div className="search-input-container-medium">
+              <input
+                type="search"
+                placeholder="Search"
+                className="search-input"
+                onChange={this.onSearchInputChange}
+                value={searchInput}
+              />
+              <button
+                type="button"
+                className="search-btn"
+                onClick={this.onClickingSearchIcon}
+                testid="searchButton"
+              >
+                <BsSearch className="search-icon" />
+              </button>
+            </div>
+            {this.renderJobDetails()}
           </div>
-          <div>
-            <p className="employment-type-heading">Salary Range</p>
-            <ul className="salary-range-list-container">
-              {salaryRangesList.map(each => (
-                <li className="list-item" key={each.salaryRangeId}>
-                  <input
-                    type="radio"
-                    id={each.salaryRangeId}
-                    className="checkbox"
-                    onChange={this.onSalaryChange}
-                    value={each.label}
-                    name="radio"
-                  />
-                  <label
-                    htmlFor={each.salaryRangeId}
-                    className="employment-type-label"
-                  >
-                    {each.label}
-                  </label>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="job-details-container">{this.renderJobDetails()}</div>
         </div>
       </div>
     )

@@ -5,6 +5,13 @@
   padding: 15px;
   background-color: #272727;
 }
+@media screen and (min-width: 768px) {
+  .navbar {
+    min-height: 11vh;
+    padding-left: 4%;
+    padding-right: 4%;
+  }
+}
 .list-container {
   padding: 0;
   list-style: none;
@@ -14,12 +21,23 @@
   justify-content: space-between;
   width: 30%;
 }
+@media screen and (min-width: 768px) {
+  .list-container {
+    display: none;
+  }
+}
 .nav-link {
   color: white;
 }
 .website-logo-home-page {
   width: 60px;
   height: 20px;
+}
+@media screen and (min-width: 768px) {
+  .website-logo-home-page {
+    width: 100px;
+    height: 35px;
+  }
 }
 .nav-icon {
   width: 17px;
@@ -31,4 +49,47 @@
   border: none;
   cursor: pointer;
   padding: 0;
+}
+.list-container-menu {
+  padding: 0;
+  list-style: none;
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .list-container-menu {
+    display: flex;
+    width: 16%;
+    justify-content: space-between;
+  }
+}
+@media screen and (min-width: 992px) {
+  .list-container-menu {
+    width: 10%;
+  }
+}
+.home-menu {
+  margin: 0;
+  color: #f8f9fc;
+  font-size: 20px;
+}
+.home-menu-link {
+  text-decoration: none;
+}
+.logout-btn-menu {
+  background-color: #4f46e5;
+  display: none;
+  border: none;
+  color: #f8f9fc;
+  width: 90px;
+  height: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+  .logout-btn-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

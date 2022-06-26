@@ -19,9 +19,24 @@
   min-height: 50vh;
   padding: 15px;
 }
+
 .logo {
   width: 80px;
   height: 25px;
+}
+@media screen and (min-width: 768px) {
+  .login-card {
+    width: 40%;
+  }
+}
+@media screen and (min-width: 992px) {
+  .login-card {
+    width: 25%;
+  }
+  .logo {
+    width: 100px;
+    height: 30px;
+  }
 }
 .form {
   width: 100%;
