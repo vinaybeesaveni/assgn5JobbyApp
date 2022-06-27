@@ -7,6 +7,13 @@
 }
 @media screen and (min-width: 768px) {
   .navbar {
+    min-height: 5vh;
+    padding-left: 4%;
+    padding-right: 4%;
+  }
+}
+@media screen and (min-width: 992px) {
+  .navbar {
     min-height: 11vh;
     padding-left: 4%;
     padding-right: 4%;
@@ -73,6 +80,16 @@
   color: #f8f9fc;
   font-size: 20px;
 }
+@media screen and (min-width: 768px) {
+  .home-menu {
+    font-size: 15px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .home-menu {
+    font-size: 18px;
+  }
+}
 .home-menu-link {
   text-decoration: none;
 }
@@ -91,5 +108,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 80px;
+    height: 25px;
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .logout-btn-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    height: 30px;
+    font-size: 14px;
   }
 }

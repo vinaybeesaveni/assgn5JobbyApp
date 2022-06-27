@@ -139,7 +139,7 @@ class JobItem extends Component {
 
     return (
       <>
-        <div className="job-item">
+        <div className="job-item-jobItem">
           <div className="job-image-container">
             <img
               src={jobItemDetails.companyLogoUrl}
@@ -188,14 +188,16 @@ class JobItem extends Component {
             {jobItemDetails.skills.map(each => this.renderSkills(each))}
           </ul>
           <h1 className="life-at-company-heading">Life at Company</h1>
-          <p className="life-at-company-description">
-            {jobItemDetails.lifeAtCompany.description}
-          </p>
-          <img
-            src={jobItemDetails.lifeAtCompany.image_url}
-            alt="life at company"
-            className="life-at-company-img"
-          />
+          <div className="life-at-company-container">
+            <p className="life-at-company-description">
+              {jobItemDetails.lifeAtCompany.description}
+            </p>
+            <img
+              src={jobItemDetails.lifeAtCompany.image_url}
+              alt="life at company"
+              className="life-at-company-img"
+            />
+          </div>
         </div>
         <h1 className="similar-jobs-heading">Similar Jobs</h1>
         {this.renderSimilarJobs(jobItemDetails.similarJobs)}
